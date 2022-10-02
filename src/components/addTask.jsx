@@ -14,29 +14,35 @@ class AddTask extends Component
      handleSubmitTask = () =>
      {
         console.log("Submit Task Event Handler Called");
+        this.setState({createTaskButtonPressed: false});
+
+        // send textbox to something else
      }
     
-    addTask = () => 
+     handleAddTask = () =>
     {
         console.log("Task added");
         this.setState({createTaskButtonPressed: true});
-        // when clicked change the render to a place where you can add a form
-        // render the Task Detail
-    };
+    }
+
+    handleCancel = () =>
+    {
+        console.log("Handle Cancel!");
+        this.setState({createTaskButtonPressed: false});
+    }
 
     render() { 
         return (
             <div>
-                {!this.state.createTaskButtonPressed && <button onClick={this.addTask}>Create Task</button>}
-                {this.state.createTaskButtonPressed && <TaskDetails></TaskDetails>}
-
-            </div>
-            
+                {!this.state.createTaskButtonPressed && <button onClick={this.handleAddTask}>Create Task</button>}
+                {this.state.createTaskButtonPressed && 
+                <TaskDetails 
+                    onCancel={this.handleCancel}
+                    onSubmit={this.handleSubmitTask}>
+                </TaskDetails>}
+            </div>  
         ) 
-        
     } // end of render
-
-
 }
  
 export default AddTask;

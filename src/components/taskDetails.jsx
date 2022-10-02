@@ -1,32 +1,43 @@
 import React, { Component } from 'react';
 
+// get input from task input and send it to 
+
 class TaskDetails extends Component 
 {
-    // store variables from form so it can be passed to actual task 
-    // when created 
-
-    // state = 
-    // {
-
-    // }
-    
-    // make addTask's createTaskButtonPressed value = true;
-    onSubmitTask = () => 
+    state = 
     {
-        console.log("hi");
+        nameOfTask: ""
     }
 
-    render() { 
+    updateTask = taskName =>
+    {
+        // this.state.taskName = event.target.value;
+        //console.log(taskName.target.value);
+
+        console.log(taskName.target.value);
+        // when submit button is pressed, pass this value to the task component
+        
+    }
+
+
+
+    render() 
+    { 
         return (
             <div>
                 <form>
-                    <label>Task:
-                        <input type="text" />
+                    <label>
+                        Task: <input type="text" onChange={this.updateTask}/>
                     </label>
                 </form>
 
                 <button
-                    onClick={this.onSubmitTask}>
+                    onClick={this.props.onCancel}>
+                    Cancel
+                </button>
+
+                <button
+                    onClick={this.props.onSubmit}>
                     Submit Task
                 </button>
             </div>
@@ -38,3 +49,4 @@ class TaskDetails extends Component
 }
  
 export default TaskDetails;
+// export {name};
