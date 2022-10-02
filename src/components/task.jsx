@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TaskDetails from "./taskDetails";
 // see what you need to import
 
 class Task extends Component 
@@ -14,7 +13,7 @@ class Task extends Component
         const {taskName} = this.state.taskName;
         return (
             <TaskDetails 
-            
+
 
             >
 

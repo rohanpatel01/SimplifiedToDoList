@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TaskDetails from "./taskDetails";
 
 class AddTask extends Component 
 {
@@ -11,7 +10,7 @@ class AddTask extends Component
         // stop rendering create Task Button
         // render TaskDetails component
 
-     handleSubmitTask = () =>
+     onSubmitTask = () =>
      {
         console.log("Submit Task Event Handler Called");
         this.setState({createTaskButtonPressed: false});
@@ -19,27 +18,52 @@ class AddTask extends Component
         // send textbox to something else
      }
     
-     handleAddTask = () =>
+     onAddTask = () =>
     {
         console.log("Task added");
         this.setState({createTaskButtonPressed: true});
     }
 
-    handleCancel = () =>
+    onCancel = () =>
     {
         console.log("Handle Cancel!");
         this.setState({createTaskButtonPressed: false});
     }
 
+    updateTask = taskName =>
+    {
+        // this.state.taskName = event.target.value;
+        //console.log(taskName.target.value);
+
+        console.log(taskName.target.value);
+        // when submit button is pressed, pass this value to the task component
+        
+    }
+
     render() { 
         return (
             <div>
-                {!this.state.createTaskButtonPressed && <button onClick={this.handleAddTask}>Create Task</button>}
+                {!this.state.createTaskButtonPressed && <button onClick={this.onAddTask}>Create Task</button>}
+                
                 {this.state.createTaskButtonPressed && 
-                <TaskDetails 
-                    onCancel={this.handleCancel}
-                    onSubmit={this.handleSubmitTask}>
-                </TaskDetails>}
+                    <div>
+                    <form>
+                        <label>
+                            Task: <input type="text" onChange={this.updateTask}/>
+                        </label>
+                    </form>
+
+                    <button
+                        onClick={this.onCancel}>
+                        Cancel
+                    </button>
+
+                    <button
+                        onClick={this.onSubmitTask}>
+                        Submit Task
+                    </button>
+                    </div>
+                }
             </div>  
         ) 
     } // end of render
